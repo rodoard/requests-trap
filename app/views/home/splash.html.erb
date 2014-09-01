@@ -1,0 +1,49 @@
+<center>
+<h1>Welcome<h1>
+<h2>Requests Trap: A tool for capture and display HTTP requests.
+
+<p class="normal">
+  This simple tool is usefol during the development of apps that
+  integrate with external services; it provides these services with
+  an endpoint to which they can send requests and notifications.
+</p>
+</center>
+<i>To Use</i>
+<p>
+<ol>
+  <li> Start by creating a new endpoint:
+      <pre>
+  ----
+  | http://requests-trap.com/[ENDPOINT]/new
+  `----
+      </pre>
+  </li>
+  <li> Give the endpoint to the service. </li>
+  <li> You can then navigate to:
+      <pre>
+      ----
+      | http://requests-trap.com/[ENDPOINT]/requests
+      `----
+     </pre>
+    to view any requests/notifications sent by the
+    external service
+  </li>
+  <li>
+    It is possible as well to view specific requests by
+    supplying the request id:
+        <pre>
+      ----
+      | http://requests-trap.com/[ENDPOINT]/requests/id
+      `----
+     </pre>
+  </li>
+  <li>
+    All available endpoints can be viewed at:
+    <pre>
+      ----
+      | http://requests-trap.com/
+      `----
+     </pre>
+  </li>
+</ol>
+</p>
