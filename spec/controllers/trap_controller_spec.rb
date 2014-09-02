@@ -2,7 +2,7 @@ require "rails_helper"
 
 module TrapHelper
   def self.http_verbs_do
-    [:get, :put, :delete, :post].each do |verb|
+    [:get, :patch, :head, :put, :delete, :post].each do |verb|
       yield(verb)
     end
   end
@@ -23,9 +23,9 @@ describe TrapController, :type => :request do
     end
     TrapHelper.http_verbs_do do |verb|
       it "#{verb.upcase}" do
-        requests_for(@trap_id, verb).count.should eq(0)
+        requests_for(@trap_id, verb).empty?.should eq(true)
         send verb, "/#{@trap_id}"
-        requests_for(@trap_id, verb).count.should eq(1)
+        requests_for(@trap_id, verb).try(:count).should eq(1)
       end
     end
   end

@@ -1,4 +1,3 @@
-# This will guess the User class
 FactoryGirl.define do
   sequence :name do |n|
     "trap-#{n}"
