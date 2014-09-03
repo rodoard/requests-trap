@@ -7,10 +7,19 @@ class Trap < ActiveRecord::Base
   end
   def self.requests_for(trap_id, type)
     trap = find_by_name trap_id
-    trap.requests.select {|request| request.cat == type}  if trap
+    downcased_type = type
+    if trap
+      trap.requests.select {|request| request.cat == downcased_type}
+    else
+      []
+    end
   end
-  def self.add_new_request(trap_id, request, type="get")
+  def self.request(trap_id, request_id)
+    trap = find_by_name trap_id
+    trap.requests.find request_id rescue nil if trap
+  end
+  def self.add_new_request(trap_id, request, response, type="get")
     trap = find_or_create_by(name:trap_id)
-    trap.requests.create! body: request, cat: type
+    trap.requests.create! data: { body: request, response: response }, cat: type.downcase
   end
 end

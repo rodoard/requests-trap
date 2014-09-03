@@ -1,16 +1,11 @@
 class TrapController < ApplicationController
-  def new
-    @trap = Trap.new
-  end
-  def create
-  end
+  protect_from_forgery with: :null_session
+  rescue_from  StandardError, with: :return_failed
   def handle_request
-    success = false
-    begin
-      success = Trap.add_new_request params[:trap_id], request
-    rescue
-    end
-    status = success ? 200 : 400
-    render json: {success: success}, status: status
+    render json: {success: true}, status: 200
+  end
+  protected
+  def return_failed
+    render json: {success: false}, status: 400
   end
 end

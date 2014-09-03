@@ -11,18 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902100943) do
+ActiveRecord::Schema.define(version: 20140901062917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "hstore"
 
   create_table "requests", force: true do |t|
-    t.hstore   "body"
+    t.json     "data"
+    t.string   "cat"
     t.integer  "trap_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "cat"
   end
 
   create_table "traps", force: true do |t|

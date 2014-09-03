@@ -3,7 +3,7 @@ require "rails_helper"
 module TrapHelper
   def self.http_verbs_do
     [:get, :patch, :head, :put, :delete, :post].each do |verb|
-      yield(verb)
+      yield(verb.to_s)
     end
   end
 end
@@ -22,10 +22,10 @@ describe TrapController, :type => :request do
       end
     end
     TrapHelper.http_verbs_do do |verb|
-      it "#{verb.upcase}" do
-        requests_for(@trap_id, verb).empty?.should eq(true)
+      it "for #{verb.upcase}" do
+        requests_for(@trap_id, verb).count.should eq(0)
         send verb, "/#{@trap_id}"
-        requests_for(@trap_id, verb).try(:count).should eq(1)
+        requests_for(@trap_id, verb).count.should eq(1)
       end
     end
   end
@@ -40,7 +40,7 @@ describe TrapController, :type => :request do
     end
     context "error path" do
       before do
-       Trap.should receive(:add_new_request).and_raise(StandardError)
+        allow_any_instance_of(TrapController).to receive(:handle_request).and_raise(StandardError)
       end
       TrapHelper.http_verbs_do do |verb|
         it "#{verb.upcase} response returns with status 400" do
