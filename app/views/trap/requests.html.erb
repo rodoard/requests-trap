@@ -1,4 +1,10 @@
 <center><h2><%= @trap.name.titleize %></h2></center>
+<fieldset>
+  <legend>New Requests -- Expand/Collapse</legend>
+  <div id="new-requests">
+  <div class="content"></div>
+  </div>
+</fieldset>
 <div class="requests">
   <% if @requests.empty? %>
     <center><p id="no-requests">No requests have been received.</p></center>

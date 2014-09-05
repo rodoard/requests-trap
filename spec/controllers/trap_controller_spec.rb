@@ -135,5 +135,8 @@ describe TrapController do
         no_request_received = "No requests have been received."
         response.body.should have_tag('p', :text => no_request_received )
       end
+      context "live updates" do
+        ""
+      end
     end
 end

@@ -4,9 +4,8 @@ class Request < ActiveRecord::Base
   belongs_to :trap
   COLUMNS_REQUIRED = [:request_date, :remote_ip, :request_method,
               :scheme, :headers]
-  COLUMNS_NOT_REQUIRED = [:query_string, :query_params, :cookies]
-  COLUMNS =  [:request_date, :remote_ip, :request_method,
-              :scheme, :query_string, :query_params, :cookies, :headers]
+  COLUMNS_NOT_REQUIRED = [:query_string, :query_params, :cookies, :content_type, :content_length]
+  COLUMNS =  COLUMNS_REQUIRED + COLUMNS_NOT_REQUIRED
   validates *COLUMNS_REQUIRED, presence:true
   attr_accessor *COLUMNS
   COLUMNS.each do |name|

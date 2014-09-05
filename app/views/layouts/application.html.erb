@@ -10,7 +10,7 @@
   </script>
 </head>
 <body data-controller="<%= params[:controller].classify%>" data-action="<%= params[:action]%>">
-
+<%= hidden_field_tag :websocket_params, "#{host_with_port}/websocket" %>
 <%= yield %>
 
 </body>

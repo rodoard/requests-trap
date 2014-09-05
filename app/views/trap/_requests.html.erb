@@ -11,7 +11,7 @@
       <tr class="request-body-<%= request_id %>">
         <td>
           <pre>
-            <%= to_pretty_json request.to_value  %>
+            <%= request.to_value.to_pretty_raw_json  %>
           </pre>
         </td>
       </tr>
@@ -19,7 +19,7 @@
         <td>
           <a href="#response-<%= request_id %>">Response</a>
           <fieldset class="response hidden">
-           <%= to_pretty_json request.response %>
+           <%=  request.response.to_pretty_raw_json %>
           </fieldset>
         </td>
       </tr>
