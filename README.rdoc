@@ -1,28 +1,55 @@
-== README
+README
+--------
+Setup
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+bundle install
 
-Things you may want to cover:
+Sanity Check
 
-* Ruby version
+rspec spec
 
-* System dependencies
+Checkout app
 
-* Configuration
+rails server
 
-* Database creation
+About This App (Rails 4 Diving In)
+-------------
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A simple tool useful during the development of apps that
+integrate with external services, such as http clients, webhooks,
+etc. It provides these services with an endpoint to which they can 
+send requests and notifications.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+[http[some url]/[endpoint]
+
+The endpoint is defined dynamically and can be arbitrary execept for 'websocket'
+
+Requests are saved into a database and can be viewed via endpoint/requests
+to view all requests listed in descending order by creation date or 
+endpoint/request/[request-id] to view individual requests
+
+The root url gives more detail about this tool
+
+Features
+--------
+
+Live updates while viewing '[endpoint]/requests' without page refresh
+
+A simple mechanism to allow for calling controller action specific javascript
+
+Test Driven Development
+
+Deployed to heroku
+
+Tech Stack
+----------
+* Rails 4
+* Ruby 2.1.1
+* Postgres (requests stored in json column)
+* WebsocketRails (secret ingredient that makes live update without page refresh possible)
+* Coffeescript
+* Rspec with Shoulda
+* Factory Girl
+* jQuery
+

@@ -1,6 +1,6 @@
 class Trap < ActiveRecord::Base
   validates :name, presence: true
-  has_many :requests
+  has_many :requests, -> { order 'created_at DESC'}
   def self.requests(trap_id)
     trap = find_by_name trap_id
     trap.try(:requests) || []
