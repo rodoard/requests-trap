@@ -27,5 +27,7 @@ module RequestsTrap
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.middleware.use "TrapRequests"
+    #per websocket-rails instructions
+    config.middleware.delete Rack::Lock
   end
 end
