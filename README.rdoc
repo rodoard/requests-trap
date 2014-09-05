@@ -23,7 +23,7 @@ send requests and notifications.
 
 [http[some url]/[endpoint]
 
-The endpoint is defined dynamically and can be arbitrary execept for 'websocket'
+The endpoint is defined dynamically and can be arbitrary
 
 Requests are saved into a database and can be viewed via endpoint/requests
 to view all requests listed in descending order by creation date or 
@@ -42,7 +42,7 @@ Used custom middleware for capturing requests
 
 Test Driven Development
 
-Deployed to heroku
+Deployed to heroku (live update does not work on heroku)
 
 Tech Stack
 ----------
