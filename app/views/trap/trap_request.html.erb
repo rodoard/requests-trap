@@ -1,0 +1,15 @@
+<center><h2><%= @trap.name.titleize %></h2></center>
+<div class="request">
+  <div class="request-header">
+    Request: <%= @trap_request.id %>
+  </div>
+  <div class="request-body">
+    <pre>
+    <%= to_pretty_json @trap_request.to_value %>
+    </pre>
+  </div>
+  <div class="request-response">
+    <%= to_pretty_json @trap_request.response %>
+  </div>
+</div>
+</div>

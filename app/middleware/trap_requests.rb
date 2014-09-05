@@ -17,8 +17,6 @@ class TrapRequests
   end
   private
   def request_info(request)
-    Rails.logger.debug request.params
-    Rails.logger.debug request.env
     {
      request_date: Date.today.to_s,
      remote_ip: request.ip,

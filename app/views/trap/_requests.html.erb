@@ -19,7 +19,7 @@
         <td>
           <a href="#response-<%= request_id %>">Response</a>
           <fieldset class="response hidden">
-           <%=  request.response %>
+           <%= to_pretty_json request.response %>
           </fieldset>
         </td>
       </tr>

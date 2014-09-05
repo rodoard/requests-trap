@@ -5,8 +5,8 @@ class TrapController < ApplicationController
     render json: {success: true}, status: 200
   end
   def trap_request
-    #load_trap
-    #@trap_request = @trap.requests.find params[:id]
+    load_trap
+    @trap_request = @trap.requests.find params[:id]
   end
   def requests
     load_trap

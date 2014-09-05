@@ -15,6 +15,9 @@ module TrapHelper
   def trap_requests(trap_id)
     get :requests, :trap_id => trap_id
   end
+  def trap_request(trap_id, request_id)
+    get :trap_request, :trap_id => trap_id, :id => request_id
+  end
   def add_request(trap_id)
     Trap.add_new_request @trap_id, build(:request), {success:true}, "get"
   end
@@ -67,43 +70,65 @@ describe TrapController do
   before do
     @trap_id = build(:trap).name
   end
-  context "display requests" do
-    it "includes trap id in header" do
-      trap_requests @trap_id
-      response.body.should have_tag('h2', :text => @trap_id.titleize )
+  context "received requests" do
+    before do
+      trap_request = add_request @trap_id
+      @request_id = trap_request.id
     end
-    context "for received requests" do
+    context "display single request" do
       before do
-        add_request @trap_id
+        trap_request @trap_id, @request_id
+      end
+      it "includes trap id in header" do
+        response.body.should have_tag('h2', :text => @trap_id.titleize )
+      end
+      context "request has" do
+        it "a header with id" do
+          response.body.should have_tag('div.header', :text => "Request: #{@request_id}" )
+        end
+        it "a body" do
+          response.body.should have_tag('div.body')
+        end
+        it "and response" do
+          response.body.should have_tag('div.response')
+        end
+      end
+     end
+    context "display all requests" do
+      before do
         trap_requests @trap_id
-        @request = Trap.requests(@trap_id).first
+      end
+      it "includes trap id in header" do
+        trap_requests @trap_id
+        response.body.should have_tag('h2', :text => @trap_id.titleize )
       end
       it "displays a table" do
         response.body.should have_tag('table.requests')
       end
       context "a request has" do
         it "a request-header with link to request" do
-          response.body.should have_tag("tr.request-header-#{@request.id}") do
-            with_tag('a', with: {href: "/#{@trap_id}/request/#{@request.id}"},  text: "Request #{@request.id}")
+          response.body.should have_tag("tr.request-header-#{@request_id}") do
+            with_tag('a', with: {href: "/#{@trap_id}/request/#{@request_id}"},  text: "Request #{@request_id}")
           end
         end
         it "a request-body" do
-          response.body.should have_tag("tr.request-body-#{@request.id}")
+          response.body.should have_tag("tr.request-body-#{@request_id}")
         end
         context "a request-response " do
           it " with a link to view response" do
-            response.body.should have_tag("tr.request-response-#{@request.id}") do
-              with_tag('a', with: {href: "#response-#{@request.id}"},  text: "Response")
+            response.body.should have_tag("tr.request-response-#{@request_id}") do
+              with_tag('a', with: {href: "#response-#{@request_id}"},  text: "Response")
             end
           end
           it " that is initially hidden" do
-            response.body.should have_tag("tr.request-response-#{@request.id}") do
+            response.body.should have_tag("tr.request-response-#{@request_id}") do
               with_tag('fieldset', with: {class: "hidden"})
             end
           end
         end
       end
     end
+   end
     context "0 requests" do
       it "displays no requests have been received" do
         trap_requests @trap_id
@@ -111,5 +136,4 @@ describe TrapController do
         response.body.should have_tag('p', :text => no_request_received )
       end
     end
-  end
 end
