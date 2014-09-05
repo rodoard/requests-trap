@@ -1,14 +1,12 @@
 <div class="request">
-  <div class="request-header">
-    Request: <%= request.id %>
-  </div>
-  <div class="request-body">
+  <div class="header">Request: <%= request.id %></div>
+  <div class="body">
     <p>Body:
     <pre>
     <%= request.to_value.to_pretty_raw_json %>
     </pre>
   </div>
-  <div class="request-response">
+  <div class="response">
     <p>Response:
     <%= request.response.to_pretty_raw_json %>
   </div>

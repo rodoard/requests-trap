@@ -30,7 +30,7 @@ describe TrapController, :type => :request do
   context "captures requests at endpoint" do
     TrapHelper.http_verbs_do do |verb|
       it "invokes add_new_request for #{verb.upcase}" do
-        Trap.should receive(:add_new_request)
+        Trap.should receive(:add_new_request).and_call_original
         send_request verb, "/#{@trap_id}"
       end
     end

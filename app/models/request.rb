@@ -18,7 +18,7 @@ class Request < ActiveRecord::Base
     end
   end
   def response
-    JSON.parse data["response"]
+    JSON.parse data["response"] rescue data["response"]
   end
   def to_value
     COLUMNS.inject({}) do |result, column|
