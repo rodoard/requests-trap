@@ -1,6 +1,6 @@
 class WebSockets
   constructor: (websocket_server) ->
-    @dispatcher = new WebSocketRails("localhost:3000/websocket")
+    @dispatcher = new WebSocketRails(websocket_server)
     @
   subscribe: (chanel, event, action) ->
     chanel = @dispatcher.subscribe(chanel)
