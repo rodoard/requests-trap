@@ -13,7 +13,6 @@ class Trap
       $(this).parent().find('fieldset').toggle()
     @fieldSetCollapse()
     websocket_params = $("#websocket_params").val()
-    console.log(websocket_params )
     websocket = new window.WebSockets(websocket_params)
     websocket.subscribe("requests", "new", self.onNewRequest)
 

@@ -38,6 +38,8 @@ Live updates while viewing '[endpoint]/requests' without page refresh
 
 A simple mechanism to allow for calling controller action specific javascript
 
+Used custom middleware for capturing requests
+
 Test Driven Development
 
 Deployed to heroku
