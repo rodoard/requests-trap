@@ -14,12 +14,15 @@ class Trap < ActiveRecord::Base
       []
     end
   end
+  def self.find_or_create_trap(trap_id)
+    find_or_create_by!(name:trap_id)
+  end
   def self.request(trap_id, request_id)
     trap = find_by_name trap_id
     trap.requests.find request_id rescue nil if trap
   end
   def self.add_new_request(trap_id, request, response, type="get")
-    trap = find_or_create_by(name:trap_id)
+    trap = find_or_create_trap(trap_id)
     trap.requests.create! data: { body: request, response: response }, cat: type.downcase
   end
 end

@@ -13,7 +13,7 @@ describe Trap do
     before do
       @trap_id = create(:trap).name
       @noexist = "#{@trap_id}-no-exist"
-      @request = {"body" => "request"}
+      @request = build(:request)
       @response = {"response" => "response"}
       @data = {"body" => @request, "response" => @response}
     end

@@ -1,0 +1,8 @@
+<center><h2><%= @trap.name.titleize %></h2></center>
+<div class="requests">
+  <% if @requests.empty? %>
+    <center><p id="no-requests">No requests have been received.</p></center>
+  <% else %>
+    <%= render "requests", object: @requests %>
+  <% end %>
+</div>

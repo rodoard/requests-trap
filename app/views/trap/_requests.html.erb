@@ -1,0 +1,28 @@
+<table class='requests' style="width:100%">
+  <tr>
+    <th>Requests</th>
+  </tr>
+  <tbody>
+    <% @requests.each do |request| %>
+      <% request_id = request.id %>
+      <tr class="request-header-<%= request_id %>">
+        <td><%= link_to "Request #{request.id}", "/#{@trap.name}/request/#{request.id}" %></td>
+      </tr>
+      <tr class="request-body-<%= request_id %>">
+        <td>
+          <pre>
+            <%= to_pretty_json request.to_value  %>
+          </pre>
+        </td>
+      </tr>
+      <tr class="request-response-<%= request_id %> response">
+        <td>
+          <a href="#response-<%= request_id %>">Response</a>
+          <fieldset class="response hidden">
+           <%=  request.response %>
+          </fieldset>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

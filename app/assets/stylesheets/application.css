@@ -16,4 +16,8 @@
 p.normal {
     font-weight: normal;
 }
-
+.hidden {
+    display:none
+}
+tr:nth-child(even) {background: #CCC}
+tr:nth-child(odd) {background: #FFF}

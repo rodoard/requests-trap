@@ -6,6 +6,10 @@ gem 'rails', '4.1.5'
 
 gem 'pg'
 
+gem 'coffee-rails'
+gem 'jquery-rails'
+gem 'uglifier'
+
 group :production do
   gem 'rails_12factor'
 end
@@ -15,5 +19,5 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
-  gem 'rspec-mocks'
+  gem 'rspec-html-matchers'
 end
