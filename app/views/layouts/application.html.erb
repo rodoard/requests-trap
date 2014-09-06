@@ -5,12 +5,13 @@
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "http://js.pusher.com/2.2/pusher.min.js" %>
   <script>
     window.controller_action()
   </script>
 </head>
 <body data-controller="<%= params[:controller].classify%>" data-action="<%= params[:action]%>">
-<%= hidden_field_tag :websocket_params, "#{host_with_port}/websocket" %>
+<%= hidden_field_tag :pusher_params, pusher_app_key %>
 <%= yield %>
 
 </body>

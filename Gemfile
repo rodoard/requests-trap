@@ -11,8 +11,7 @@ gem 'jquery-rails'
 gem 'uglifier'
 
 # >>> for live updates
-gem 'websocket-rails'
-gem 'thin'
+gem 'pusher'
 # <<< for live updates
 
 group :production do

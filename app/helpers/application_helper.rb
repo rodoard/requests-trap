@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def host_with_port
-    @host_with_port
+  def pusher_app_key
+    Pusher.key
   end
 end

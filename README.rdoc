@@ -42,14 +42,14 @@ Used custom middleware for capturing requests
 
 Test Driven Development
 
-Deployed to heroku (live update does not work on heroku)
+Deployed to heroku (works on heroku as well)
 
 Tech Stack
 ----------
 * Rails 4
 * Ruby 2.1.1
 * Postgres (requests stored in json column)
-* WebsocketRails (secret ingredient that makes live update without page refresh possible)
+* Pusher (secret ingredient that makes live update without page refresh possible)
 * Coffeescript
 * Rspec with Shoulda
 * Factory Girl
